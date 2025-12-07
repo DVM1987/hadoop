@@ -73,11 +73,46 @@ def exercise3():
         print(f"Error cleaning text: {e}")
         raise e
     # Remove punctuation and special characters
+    try:
+        cleaned_text = re.sub(r'[^\w\s]', '', cleaned_text)
+        print("Text after removing punctuation:")
+        print(cleaned_text[:200] + "..." if len(cleaned_text) > 200 else cleaned_text)
+    except Exception as e:
+        print(f"Error removing punctuation: {e}")
+        raise e
     # Split into words
-    
+    try:
+        words = cleaned_text.split()
+        print("Words:")
+        print(words[:200] + "..." if len(words) > 200 else words)
+    except Exception as e:
+        print(f"Error splitting text into words: {e}")
+        raise e
     # TODO: Task 3 - Implement word count
     # Count frequency of each word
+    try:
+        word_counts = Counter(words)
+        print("Word counts:")
+        print(word_counts)
+    except Exception as e:
+        print(f"Error counting words: {e}")
+        raise e
     # Remove common stop words (the, and, is, etc.)
+    try:
+        stop_words = set(['the', 'and', 'is', 'to', 'of', 'a', 'an', 'in', 'on', 'at', 'for', 'with', 'by', 'it', 'are', 'be', 'or', 'as', 'that', 'have', 'has', 'will', 'from', 'they', 'them', 'their', 'this', 'these', 'those', 'was', 'were', 'been'])
+        filtered_words = [word for word in words if word not in stop_words and len(word) > 2]
+        print("Filtered words:")
+        print(filtered_words[:200] + "..." if len(filtered_words) > 200 else filtered_words)
+    except Exception as e:
+        print(f"Error filtering words: {e}")
+        raise e
+    try:
+        most_common = word_counts.most_common(10)
+        print("Most common words:")
+        print(most_common)
+    except Exception as e:
+        print(f"Error finding most common words: {e}")
+        raise e
     
     # TODO: Task 4 - Find most common words
     # Get top 10 most frequent words
