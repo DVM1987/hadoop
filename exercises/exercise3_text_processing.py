@@ -32,6 +32,13 @@ def exercise3():
     
     # TODO: Task 1 - Read text file from HDFS
     # Read /data/sample_text.txt from HDFS
+
+    with hdfs.open('/data/sample_text.txt', 'rt') as f:
+        text_content = f.read()
+    print("Original text:")
+    print(text_content[:200] + "..." if len(text_content) > 200 else text_content)
+
+
     
     # TODO: Task 2 - Clean and preprocess text
     # Convert to lowercase
